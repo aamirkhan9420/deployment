@@ -29,7 +29,7 @@ app.post("/addcart", async (req, res) => {
 
     const new_cart = new CartModel(data)
     await new_cart.save()
-    res.send({ "msg ": "successfully added to cart" })
+    res.send({ "msg ": new_cart })
 
 })
 app.patch("/editcart/:id", async (req, res) => {
@@ -38,7 +38,7 @@ app.patch("/editcart/:id", async (req, res) => {
     console.log(id)
     try {
         const new_cart = await CartModel.findByIdAndUpdate({ _id: id }, data)
-    res.send({ "msg ": "quantity successfully edit " })
+    res.send({ "msg ": new_cart })
     } catch (error) {
         res.send({ "msg ": error })
     }
@@ -49,7 +49,7 @@ app.delete("/deletecart/:id", async (req, res) => {
 
     let id = req.params.id
     const new_cart = await CartModel.findByIdAndDelete({ _id: id })
-    res.send({ "msg ": "cart successfully deleted " })
+    res.send({ "msg ": new_cart })
 
 })
 
